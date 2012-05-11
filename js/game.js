@@ -29,6 +29,9 @@ monsterImage.onload = function () {
 };
 monsterImage.src = "images/monster.png";
 
+// Chomp sound
+var snd = new Audio("audio/goat.wav");
+
 // Game objects
 var hero = {
 	speed: 256 // movement in pixels per second
@@ -49,6 +52,12 @@ addEventListener("keyup", function (e) {
 
 // Reset the game when the player catches a monster
 var reset = function () {
+	if(snd.currentTime > 0)
+	{
+		snd.currentTime=0; //this is to make sure the sound resets if it is still playing
+	}
+	snd.play();
+	
 	hero.x = canvas.width / 2;
 	hero.y = canvas.height / 2;
 
